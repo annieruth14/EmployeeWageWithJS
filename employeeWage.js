@@ -1,17 +1,3 @@
-
-// UC1
-{
-    const IS_ABSENT = 0;
-    let check = Math.floor(Math.random() * 10 ) % 2;
-    if(check == IS_ABSENT) {
-        console.log("UC1 - Employee is Absent.");
-        return;
-    }
-    else {
-        console.log("UC1 - Employee is Present");
-    }
-}
-
 // UC 2 Switch case
 const IS_PART_TIME = 1;
 const IS_FULL_TIME = 2;
@@ -38,6 +24,7 @@ let totalEmpHrs = 0;
 let totalWorkingDays = 0;
 // array of numbers
 let empDailyWageArr = new Array();
+let empDailyWageMap = new Map();
 
 function calcDailyWage(empHrs) {
     return empHrs * WAGE_PER_HOUR;
@@ -49,10 +36,12 @@ while(totalEmpHrs <= MAX_HOURS && totalWorkingDays < NUM_OF_WORKING_DAYS) {
     let empHrs = getWorkingHours(empCheck);
     totalEmpHrs += empHrs;
     empDailyWageArr.push(calcDailyWage(empHrs))
+    empDailyWageMap.set(totalWorkingDays, calcDailyWage(empHrs));
 }
 let empWage = calcDailyWage(totalEmpHrs);
 console.log("UC6 - total days: "+ totalWorkingDays + " Total hrs: "+ totalEmpHrs + " Emp Wage: "+ empWage);
 
+console.log(empDailyWageMap);
 // 7A
 // arrays Helper function
 let totalEmpWage = 0;
@@ -112,4 +101,5 @@ function totalDaysWorked(numOfDays, dailyWage) {
     return numOfDays;
 }
 console.log("UC-7G -- Number of days Emp Worked: "+ empDailyWageArr.reduce(totalDaysWorked, 0));
+
 
